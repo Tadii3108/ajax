@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Visitor Form</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(233, 151, 151);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-origin: content-box;
+            background-repeat: no-repeat;
+            background-size: cover;
+	        min-height: 100vh;
+	        font-family: 'Noto Sans', sans-serif;
+        }
+
+        .container {
+            position: absolute;
+	        left: 50%;
+	        top: 50%;
+	        transform: translate(-50%,-50%);
+            background-color: rgba(0, 0, 0, 0.89);
+	        border-radius: 4px;
+	        padding: 70px 100px;
+        }
+
+        .heading {
+	        color:#fff;	
+	        text-transform: uppercase;
+            font-size: 23px;
+            margin: -50px 0 80px 0;
+            display: block;
+            text-align: center;
+        }
+
+        .form-input {
+            position:relative;
+	        margin-bottom:25px;
+        }
+
+        .form-input label{
+	        position:absolute;
+	        top:0px;
+	        left:0px;
+	        font-size:16px;
+	        color:#fff;	
+            pointer-events:none;
+	        transition: all 0.5s ease-in-out;
+        }
+
+        .form-input input, textarea { 
+            border:0;
+            border-bottom:1px solid #555;  
+            background:transparent;
+            width:100%;
+            padding:8px 0 5px 0;
+            font-size:16px;
+            color:#fff;
+        }
+
+        .form-input input:focus{ 
+            border:none;	
+            outline:none;
+            border-bottom:1px solid rgb(233, 151, 151);	
+        }
+
+        .form-input textarea:focus {
+            border:none;	
+            outline:none;
+            border-bottom:1px solid rgb(233, 151, 151);	
+        }
+
+        .btn{
+	        color:#fff;
+	        background-color: rgb(214, 109, 109);
+	        outline: none;
+            border: 0;
+            color: #fff;
+	        padding:10px 20px;
+	        text-transform:uppercase;
+	        margin-top:50px;
+	        border-radius:2px;
+	        cursor:pointer;
+	        position:relative;
+        }
+
+        .btn:hover {
+            background-color: rgb(189, 71, 71);
+        }
+
+        .form-input input:focus ~ label,
+        .form-input input:valid ~ label{
+	        top:-12px;
+	        font-size:12px;
+        }
+
+        .form-input textarea:focus ~ label,
+        .form-input textarea:valid ~ label{
+	        top:-12px;
+	        font-size:12px;
+        }
+
+        table {
+            width: 100%;
+            padding-bottom: 10px;
+        }
+        table th, table td {
+            padding: 5px;
+            text-align: center;
+            box-sizing: border-box;
+            border: solid 1px rgb(189, 71, 71);
+        }
+        table button {
+            cursor: pointer;
+            font-size: 18px;
+            padding: 10px 15px;
+            text-align: center;
+            border-radius: 5px;
+            color: #a82315;
+            border: solid 2px #eb6d60;
+            background-color: #ed7669;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <span class="heading">visitor log</span>
+
+        <form class="body" action="/submit" method="POST" autocomplete="on">
+            <div class="form-input">
+                <input type="text" name="name">
+                <label>Full Name</label>
+            </div>
+            <div class="form-input">
+                <input type="number" name="age">
+                <label>Your Age</label>
+            </div>
+            <div class="form-input">
+                <input type="date" name="date_of_visit">
+                <label>Date of Visit</label>
+            </div>
+            <div class="form-input">
+                <input type="time" name="time_of_visit">
+                <label>Time of Visit</label>
+            </div>
+            <div class="form-input">
+                <input type="text" name="assistant">
+                <label>Assistant Name</label>
+            </div>
+            <div class="form-input">
+                <textarea name="comments"></textarea>
+                <label>Comments</label>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+
+        </form>
+
+        <div class="output">
+            <table class="table">
+            	<thead>
+            		<tr>
+	            		<th>ID</th>
+	            		<th>Visitor</th>
+	            		<th>Age</th>
+	            		<th>Date</th>
+	            		<th>Time</th>
+	            		<th>Assistant</th>
+	            		<th>Comments</th>
+	            		<th>&nbsp;</th>
+	            	</tr>
+            	</thead>
+            	<tbody id="visitors">
+            	</tbody>
+            </table>
+        </div>
+
+    </div>
+    <script src="file.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
