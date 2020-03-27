@@ -18,6 +18,7 @@ const createTable = async(tableName) => {
     return res.rowCount;
 }
 
+//save visitor onto db
 const addNewVisitor = async(visitor_name, visitor_age, date_of_visit, time_of_visit, assistant, comments) => {
     return new Promise(async(resolve, reject) => {
         await pool.query(
@@ -41,9 +42,10 @@ const addNewVisitor = async(visitor_name, visitor_age, date_of_visit, time_of_vi
     });
 }
 
+//views visitors. 
 const listVisitors = async() => {
     return new Promise(async(resolve,reject) => {
-        await pool.query('SELECT id, visitor_name FROM visitors', (error, results) => {
+        await pool.query('SELECT id, visitor_name FROM visitors',[], (error, results) => {
             if (error){
                 reject(error)
             }
@@ -53,6 +55,7 @@ const listVisitors = async() => {
     })
 }
 
+//deletes visitor with id
 const deleteVisitor = async (id) => {
     return new Promise(async(resolve,reject) => {
         await pool.query('DELETE FROM visitors WHERE id = $1', [id], (error, results) => {

@@ -1,29 +1,27 @@
 const {addNewVisitor, listVisitors, deleteVisitor, updateVisitor, viewVisitor, deleteAllVisitors} = require('./db');
 const express = require('express');
 const path = require('path')
+
 const app = express();
 const port = 9005;
 
+app.use(express.urlencoded());
 app.use(express.json());
-app.use(express.urlencoded({ extended : true }));
 app.use('/single-page-app', express.static('public'));
-
-app.get('/', (request, response) => {
-    response.json({ info: 'Node.js, Express, and Postgres API' })
-})
 
 app.get('/single-page-app', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 })
 
+//add visitor
 app.post('/addNewVisitor', async(req, res) => {
     console.log(JSON.stringify(req.body));
-    const visitor_name = req.body.visitor_name;
-    const visitor_age = req.body.visitor_age;
-    const date_of_visit = req.body.date_of_visit;
-    const time_of_visit = req.body.time_of_visit;
-    const assistant = req.body.assistant;
-    const comments = req.body.comments;
+    let visitor_name = req.body.visitor_name;
+    let visitor_age = req.body.visitor_age;
+    let date_of_visit = req.body.date_of_visit;
+    let time_of_visit = req.body.time_of_visit;
+    let assistant = req.body.assistant;
+    let comments = req.body.comments;
 
     const newVisitor = await addNewVisitor(visitor_name,visitor_age,date_of_visit,time_of_visit,assistant,comments);
     res.send(JSON.stringify(newVisitor));
@@ -76,3 +74,5 @@ app.delete('/deleteAllVisitors', async(req, res) => {
 const server = app.listen(port, () => {
     console.log(`server listening at ${port}.`)
 });
+
+module.exports = server;
