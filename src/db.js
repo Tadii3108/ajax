@@ -113,6 +113,8 @@ const deleteAllVisitors = async () => {
         })
     })
 }
+//createTable('visitors')
+//addNewVisitor('Tadiwa', 21, '31/08/1999', '21:00', 'Cole S', 'Good!')
 
 module.exports = {
     createTable,

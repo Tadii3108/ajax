@@ -25,21 +25,21 @@ app.post('/addNewVisitor', async(req, res) => {
 
     const newVisitor = await addNewVisitor(visitor_name,visitor_age,date_of_visit,time_of_visit,assistant,comments);
     res.send(JSON.stringify(newVisitor));
-    res.end();
+    res.status(200).end();
 });
 
 app.get('/listVisitors', async(req, res) =>{
     const allVisitors = await listVisitors();
 
     res.send(JSON.stringify(allVisitors));
-    res.end();
+    res.status(200).end();
 })
 
 app.delete('/deleteVisitor/:id', async(req, res) => {
     const delVisitor = await deleteVisitor(req.params.id);
 
     res.send(JSON.stringify(delVisitor));
-    res.end();
+    res.status(200).endend();
 })
 
 app.put('/updateVisitor/:id', async(req, res) => {
@@ -54,21 +54,21 @@ app.put('/updateVisitor/:id', async(req, res) => {
 
     const update = await updateVisitor(id,visitor_name,visitor_age,date_of_visit,time_of_visit,assistant,comments);
     res.send(JSON.stringify(update));
-    res.end();
+    res.status(200).end();
 })
 
 app.get('/viewVisitor/:id', async(req, res) => {
     const view = await viewVisitor(req.params.id);
 
     res.send(JSON.stringify(view));
-    res.end();
+    res.status(200).end();
 })
 
 app.delete('/deleteAllVisitors', async(req, res) => {
     const deleteAll = await deleteAllVisitors();
 
     res.send(JSON.stringify(deleteAll));
-    res.end();
+    res.status(200).end();
 })
     
 const server = app.listen(port, () => {
