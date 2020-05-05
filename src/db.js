@@ -18,7 +18,7 @@ const createTable = async(tableName) => {
     return res.rowCount;
 }
 
-//save visitor onto db
+//saves visitor onto db
 const addNewVisitor = async(visitor_name, visitor_age, date_of_visit, time_of_visit, assistant, comments) => {
     return new Promise(async(resolve, reject) => {
         await pool.query(
@@ -113,8 +113,6 @@ const deleteAllVisitors = async () => {
         })
     })
 }
-//createTable('visitors')
-//addNewVisitor('Tadiwa', 21, '31/08/1999', '21:00', 'Cole S', 'Good!')
 
 module.exports = {
     createTable,
